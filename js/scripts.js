@@ -5,5 +5,10 @@ let pokemonList = [
     { number: 3, name: 'Venusaur', height: 2, types: ['grass', 'poison'] },
     { number: 4, name: 'Charmander', height: 0.6, types: ['fire'] },
     { number: 5, name: 'Charmeleon', height: 1.1, types: ['fire'] },
-    { number: 6, name: 'Charizard', height: 0.6, types: ['fire', 'flying'] }
-]
+    { number: 6, name: 'Charizard', height: 1.7, types: ['fire', 'flying'] }
+];
+
+for (let i=0; i<pokemonList.length; i++){
+    document.write(pokemonList[i].name + ' ' + 'height (m):' + '' + pokemonList[i].height)
+}
+

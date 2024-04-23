@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+}
+:root {
+    --primary-color: #006d77;
+    --secondary-color: #83c5be;
+    --color-three: #edf6f9;
+    --color-four: #ffddd2;
+    --color-five: #000411;
+    --color-six: #e29578;
+}
+
+body {
+    background-color: var(--color-three);
+
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 250;
+    font-style: normal;
+    color: var(--color-five);
+
+}
+
