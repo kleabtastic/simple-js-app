@@ -8,7 +8,8 @@ let pokemonList = [
     { number: 6, name: 'Charizard', height: 1.7, types: ['fire', 'flying'] }
 ];
 
-for (let i=0; i<pokemonList.length; i++){
-    document.write(pokemonList[i].name + ' ' + 'height (m):' + '' + pokemonList[i].height)
+for (let i = 0; i < pokemonList.length; i++) {
+    if (pokemonList[i].height >= 1.5) {
+        document.write('<br>' + pokemonList[i].name + ' ' + 'height (m):' + '' + pokemonList[i].height + '-' + "That's a big one!")
+    } else { document.write('<br>' + pokemonList[i].name + ' ' + 'height (m):' + '' + pokemonList[i].height)}
 }
-
