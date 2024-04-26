@@ -28,12 +28,11 @@ pokemonRepository.add(
 
 console.log(pokemonRepository.getAll())
 
-/* pokemonRepository.getAll();
-pokemon.forEach(function(pokemon) {
+pokemonRepository.getAll().forEach(function(pokemon) {
     if (pokemon.height >= 1.5) {
         document.write('<p>' + pokemon.name + ' ' + 'height (m): ' + '' + pokemon.height + ' - ' + "That's a big one!" + '</p>')
     } else { document.write('<p>' + pokemon.name + ' ' + 'height (m): ' + '' + pokemon.height) + '</p>'}
-}); */
+});
 
 
 
