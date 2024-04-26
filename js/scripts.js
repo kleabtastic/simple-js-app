@@ -3,6 +3,7 @@ let pokemonList = [
     { number: 1, name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
     { number: 2, name: 'Ivysaur', height: 1, types: ['grass', 'poison'] },
     { number: 3, name: 'Venusaur', height: 2, types: ['grass', 'poison'] },
+
 ]
 
 let pokemonList2 = [
@@ -12,24 +13,12 @@ let pokemonList2 = [
 ];
 
 function printArrayDetails(list){
-for (let i = 0; i < list.length; i++) {
-    if (list[i].height >= 1.5) {
-        document.write('<p>' + list[i].name + ' ' + 'height (m): ' + '' + list[i].height + ' - ' + "That's a big one!" + '</p>')
-    } else { document.write('<p>' + list[i].name + ' ' + 'height (m): ' + '' + list[i].height) + '</p>'}
-}
-}
+list.forEach(function(list) {
+    if (list.height >= 1.5) {
+        document.write('<p>' + list.name + ' ' + 'height (m): ' + '' + list.height + ' - ' + "That's a big one!" + '</p>')
+    } else { document.write('<p>' + list.name + ' ' + 'height (m): ' + '' + list.height) + '</p>'}
+})};
 
 printArrayDetails(pokemonList);
 printArrayDetails(pokemonList2)
 
-let x = 5;
-
-function foo(){
-  let y = 10;
-  console.log("From inside foo(): x = " + x);
-  console.log("From inside foo(): y = " + y);
-}
-
-foo();
-console.log("From outside foo(): x = " + x);
-console.log("From outside foo(): y = " + y);
