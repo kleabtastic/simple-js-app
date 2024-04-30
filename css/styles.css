@@ -1,23 +1,106 @@
 * {
     box-sizing: border-box;
 }
+
 :root {
-    --primary-color: #006d77;
-    --secondary-color: #83c5be;
-    --color-three: #edf6f9;
-    --color-four: #ffddd2;
+    --primary-color: #780000;
+    --secondary-color: #fdf0d5;
+    --color-three: #c1121f;
+    --color-four: #003049;
     --color-five: #000411;
-    --color-six: #e29578;
+    --color-six: #669bbc;
 }
 
 body {
-    background-color: var(--color-three);
+    background-color: var(--secondary-color);
 
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-weight: 250;
     font-style: normal;
-    color: var(--color-five);
+    color: var(--color-four);
 
+}
+
+button,
+.button,
+button-class,
+.button-class {
+    border: none;
+    display: inline-block;
+    font-family: inherit;
+    background-color: var(--color-six);
+    color: var(--color-four);
+    text-decoration: none;
+    font-size: 16px;
+    padding: 20px 10px;
+    border-radius: 3px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.3);
+    transition: opacity 0.2s;
+    width: 180px;
+    margin: auto;
+}
+
+button:hover,
+.button:hover,
+button:focus,
+.button:focus {
+    background-color: var(--color-six);
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+/* start grid fallback */
+.pokemon-list {
+    display: inline-block;
+    width: 33%;
+}
+
+/* end grid fallback */
+
+
+.pokemon-list {
+    list-style-type: none;
+}
+
+
+
+@supports (display: grid) {
+    .pokemon-list {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 10px;
+        margin: 10px;
+    }
+
+    li {
+        padding: 15px;
+        width: auto;
+        min-height: 25px;
+        margin: 0;
+    }
+
+    @media all and (max-width:500px) {
+        .pokemon-list {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media all and (min-width: 501px) and (max-width: 750px) {
+        .pokemon-list {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media all and (max-width:750px) {
+        .pokemon-list {
+            grid-gap: 10px;
+        }
+
+        li:last-child {
+            grid-column: auto / auto;
+            grid-row: auto / auto;
+        }
+    }
 }
 
