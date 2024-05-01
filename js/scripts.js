@@ -1,16 +1,14 @@
 let pokemonRepository = (function () {
-    let pokemonList = [
-        { number: 1, name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison'] },
-        { number: 2, name: 'Ivysaur', height: 1, types: ['grass', 'poison'] },
-        { number: 3, name: 'Venusaur', height: 2, types: ['grass', 'poison'] },
-        { number: 4, name: 'Charmander', height: 0.6, types: ['fire'] },
-        { number: 5, name: 'Charmeleon', height: 1.1, types: ['fire'] },
-    ]
+    let pokemonList = []
+    let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
+
+    // Adds a new pokemon
     function add(pokemon) {
         pokemonList.push(pokemon);
     }
 
+    // Gets all pokemon in the list.
     function getAll() {
         return pokemonList;
     }
@@ -19,35 +17,66 @@ let pokemonRepository = (function () {
         let list = document.querySelector('.pokemon-list');
         let listItem = document.createElement('li');
         let button = document.createElement('button');
-        button.innerText = pokemon.name; 
+        button.innerText = pokemon.name;
         button.classList.add('pokemon-class');
         listItem.appendChild(button);
-        list.appendChild(listItem);    
+        list.appendChild(listItem);
         button.addEventListener('click', function (event) {
             showDetails(pokemon)
-        })}
+        })
+    }
 
     function showDetails(pokemon) {
-        console.log(pokemon)
+        loadDetails(pokemon).then(function () {
+            console.log(pokemon)
+        });
+    }
+
+    function loadList() {
+        return fetch(apiUrl).then(function (response) {
+            return response.json();
+        }).then(function (json) {
+            json.results.forEach(function (item) {
+                let pokemon = {
+                    name: item.name,
+                    detailsUrl: item.Url
+                };
+                add(pokemon);
+            });
+        }).catch(function (e) {
+            console.error(e);
+        })
+    }
+
+    function loadDetails(item) {
+        let url = item.detailsUrl;
+        return fetch(url).then(function (response) {
+            return response.json();
+        }).then(function (details) {
+            item.imageUrl = details.sprites.front_default;
+            item.height = details.height;
+            item.weight = details.weight;
+            item.types = details.types;
+        }).catch(function (e) {
+            console.error(e);
+        });
     }
 
     return {
         add: add,
         getAll: getAll,
-        addListItem: addListItem
+        loadList: loadList,
+        addListItem: addListItem,
+        loadDetails: loadDetails,
+        showDetails: showDetails
     };
 
 })();
 
-pokemonRepository.add(
-    { number: 6, name: 'Charizard', height: 1.7, types: ['fire', 'flying'] }
-);
-
-
-
-pokemonRepository.getAll().forEach(function(pokemon) {
-
-    pokemonRepository.addListItem(pokemon);
+pokemonRepository.loadList().then(function () {
+    pokemonRepository.getAll().forEach(function (pokemon) {
+        pokemonRepository.addListItem(pokemon);
+    });
 });
 
 
