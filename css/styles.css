@@ -69,6 +69,7 @@ button:focus,
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 10px;
         margin: 10px;
+        -ms-grid-column-align: center;
     }
 
     li {
